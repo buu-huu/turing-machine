@@ -24,11 +24,13 @@ def read_program(path):
 
 
 def main():
-    tape = Tape(10, 0, ['1', '1', '1'])
-    print(tape.values)
+    # Initializing the tape with begin values
+    tape = Tape(10, 0, ['1', '1', '1', '1'])
 
+    # Reading program from file
     instructions = read_program('turing_programs/double_ones.txt')
 
+    # Running program
     while tape.current_state != 'zE':
         for instruction in instructions:
             if instruction.condition_state == tape.current_state:
