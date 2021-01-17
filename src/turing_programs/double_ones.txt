@@ -1,9 +1,10 @@
-z0,1>z1,a,R
-z1,1>z1,1,R
-z1,b>z1,b,R
-z1,EMP>z2,b,L
-z2,b>z2,b,L
-z2,1>z2,1,L
-z2,a>z0,1,R
-z0,b>z0,1,R
-z0,EMP>zE,EMP,H
+z0, 1 > z1, a, R
+z1, 1 > z1, 1, R
+z1, b > z1, b, R
+z1, EMP > z2, b, L
+z2, b > z2, b, L
+z2, 1 > z2, 1, L
+z2, a > z0, 1, R
+z0, b > z0, 1, R
+z0, EMP > zE, EMP, H
+

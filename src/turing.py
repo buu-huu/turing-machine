@@ -7,8 +7,15 @@ def read_program(path):
         instructions = f.readlines()
     instructions = [x.strip() for x in instructions]
 
+    # Cleaning up spaces in program file
+    instructions_cleaned = []
+    for line in instructions:
+        instructions_cleaned.append(line.replace(' ', ''))
+
+    instructions_cleaned = list(filter(None, instructions_cleaned))
+
     instruction_list = []
-    for instruction in instructions:
+    for instruction in instructions_cleaned:
         conditions = instruction.split('>')[0].split(',')
         result = instruction.split('>')[1].split(',')
 
