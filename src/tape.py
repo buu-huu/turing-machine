@@ -11,3 +11,24 @@ class Tape:
 
     def read_current_value(self):
         return self.values[self.head_position]
+
+    def write_current_value(self, value):
+        self.values[self.head_position] = value
+
+    def move_head(self, instr_char):
+        if instr_char == 'R':
+            self.head_position += 1
+        elif instr_char == 'L':
+            if self.head_position > 0:
+                self.head_position -= 1
+            else:
+                print('ERROR: Cant move head left. Already at ')
+        elif instr_char == 'H':
+            print('INFO: Hold signal sent to head.')
+        else:
+            print('ERROR: Cant move head. Unknown instruction: ', instr_char)
+
+    def execute_instruction(self, instruction):
+        self.write_current_value(instruction.result_write)
+        self.move_head(instruction.result_move)
+        self.current_state = instruction.result_state
