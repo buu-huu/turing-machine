@@ -39,12 +39,17 @@ def main():
 
     # Running program
     while tape.current_state != 'zE':
+        run = 0
         for instruction in instructions:
             if instruction.condition_state == tape.current_state:
                 if instruction.condition_read == tape.read_current_value():
                     print('Executing instruction: ', instruction)
                     tape.execute_instruction(instruction)
                     break
+            run += 1
+            if run == len(instructions):
+                print('No applicable instruction in program found. Avoiding endless loop. Exiting.')
+                tape.current_state = 'zE'
 
     print('Program completed. Result:')
     print(tape)
