@@ -1,4 +1,6 @@
 class Tape:
+    EMPTY_STRING = 'EMP'
+
     def __init__(self, length, head_position, values):
         self.length = length
         self.values = values
@@ -21,7 +23,7 @@ class Tape:
         try:
             value = self.values[self.head_position]
         except IndexError:
-            self.values.append('EMP')
+            self.values.append(self.EMPTY_STRING)
             value = self.values[self.head_position]
         return value
 
@@ -29,7 +31,7 @@ class Tape:
         try:
             self.values[self.head_position] = value
         except IndexError:
-            self.values.append('EMP')
+            self.values.append(self.EMPTY_STRING)
             self.values[self.head_position] = value
 
     def move_head(self, instr_char):
