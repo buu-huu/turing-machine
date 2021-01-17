@@ -36,7 +36,9 @@ def main():
                     print('Executing instruction: ', instruction)
                     tape.execute_instruction(instruction)
                     break
-        print(tape)
+
+    print('Successful completion. Result:')
+    print(tape)
 
 
 if __name__ == '__main__':
