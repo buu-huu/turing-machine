@@ -24,15 +24,19 @@ def read_program(path):
 
 
 def main():
-    tape = Tape(10, 0)
-    tape.set_initial_values(['1', '1', '1'])
+    tape = Tape(10, 0, ['1', '1', '1', 'EMP', 'EMP', 'EMP', 'EMP'])
+    print(tape.values)
 
     instructions = read_program('turing_programs/double_ones.txt')
 
-    for instruction in instructions:
-        if instruction.condition_state == tape.current_state:
-            if instruction.condition_read == tape.read_current_value():
-                print(instruction)
+    while tape.current_state != 'zE':
+        for instruction in instructions:
+            if instruction.condition_state == tape.current_state:
+                if instruction.condition_read == tape.read_current_value():
+                    print('Executing instruction: ', instruction)
+                    tape.execute_instruction(instruction)
+                    break
+        print(tape)
 
 
 if __name__ == '__main__':

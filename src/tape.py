@@ -1,10 +1,18 @@
 class Tape:
-    def __init__(self, length, head_position):
+    def __init__(self, length, head_position, values):
         self.length = length
-        self.values = []
+        self.values = values
         self.head_position = head_position
 
         self.current_state = 'z0'
+
+    def __str__(self):
+        result_string = '========= TAPE DUMP =========\n'
+        for value in self.values:
+            result_string += value
+            result_string += ' '
+        result_string += '\n============================='
+        return result_string
 
     def set_initial_values(self, values):
         self.values = values
