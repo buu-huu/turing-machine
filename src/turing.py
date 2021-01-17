@@ -24,7 +24,7 @@ def read_program(path):
 
 
 def main():
-    tape = Tape(10, 0, ['1', '1', '1', 'EMP', 'EMP', 'EMP', 'EMP'])
+    tape = Tape(10, 0, ['1', '1', '1'])
     print(tape.values)
 
     instructions = read_program('turing_programs/double_ones.txt')
@@ -37,7 +37,7 @@ def main():
                     tape.execute_instruction(instruction)
                     break
 
-    print('Successful completion. Result:')
+    print('Program completed. Result:')
     print(tape)
 
 

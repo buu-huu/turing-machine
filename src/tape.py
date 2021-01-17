@@ -18,10 +18,19 @@ class Tape:
         self.values = values
 
     def read_current_value(self):
-        return self.values[self.head_position]
+        try:
+            value = self.values[self.head_position]
+        except IndexError:
+            self.values.append('EMP')
+            value = self.values[self.head_position]
+        return value
 
     def write_current_value(self, value):
-        self.values[self.head_position] = value
+        try:
+            self.values[self.head_position] = value
+        except IndexError:
+            self.values.append('EMP')
+            self.values[self.head_position] = value
 
     def move_head(self, instr_char):
         if instr_char == 'R':
