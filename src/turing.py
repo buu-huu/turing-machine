@@ -1,7 +1,8 @@
+from PyQt5.QtWidgets import QApplication
+
+from window import *
 from tape import *
 from instruction import *
-from PyQt5.QtWidgets import QApplication
-from window import *
 
 import sys
 
@@ -41,6 +42,8 @@ def main():
     # Reading program from file
     instructions = read_program('turing_programs/double_ones.txt')
 
+    execution_storage = [tape.get_values()]
+
     # Running program
     while tape.current_state != 'zE':
         run = 0
@@ -49,6 +52,7 @@ def main():
                 if instruction.condition_read == tape.read_current_value():
                     print('Executing instruction: ', instruction)
                     tape.execute_instruction(instruction)
+                    execution_storage.append(tape.get_values())
                     break
             run += 1
             if run == len(instructions):
@@ -57,6 +61,8 @@ def main():
 
     print('Program completed. Result:')
     print(tape)
+
+    print(execution_storage)
 
     app = QApplication(sys.argv)
     window = Window(instructions)

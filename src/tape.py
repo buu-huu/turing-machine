@@ -47,6 +47,9 @@ class Tape:
         else:
             print('ERROR: Cant move head. Unknown instruction: ', instr_char)
 
+    def get_values(self):
+        return [x for x in self.values]
+
     def execute_instruction(self, instruction):
         self.write_current_value(instruction.result_write)
         self.move_head(instruction.result_move)

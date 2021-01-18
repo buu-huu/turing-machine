@@ -1,10 +1,12 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
+from PyQt5.QtGui import *
 
 
 class Window(QWidget):
     def __init__(self, program):
         super().__init__()
+        self.program_length = len(program)
         self.initUI()
         self.load_program_to_list(program)
 
@@ -19,6 +21,13 @@ class Window(QWidget):
         self.list_label.setText('Program')
         self.list_label.setAlignment(Qt.AlignLeft)
 
+        self.table = QTableWidget()
+        self.table.setRowCount(1)
+        self.table.setColumnCount(self.program_length)
+        self.table.resizeColumnsToContents()
+        self.table.setItem(0, 0, QTableWidgetItem('1'))
+        self.table.setItem(0, 1, QTableWidgetItem('2'))
+
         # Layout
         self.master_layout = QHBoxLayout(self)
         self.master_layout.setAlignment(Qt.AlignLeft)
@@ -28,6 +37,7 @@ class Window(QWidget):
         self.prog_box.addWidget(self.program_list)
 
         self.master_layout.addLayout(self.prog_box)
+        self.master_layout.addWidget(self.table)
         self.setLayout(self.master_layout)
 
         self.show()
