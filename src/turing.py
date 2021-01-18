@@ -36,33 +36,19 @@ def read_program(path):
 
 
 def main():
-    # Initializing the tape with begin values
-    tape = Tape(10, 0, ['1', '1', '1', '1'])
-
     # Reading program from file
     instructions = read_program('turing_programs/double_ones.txt')
 
-    execution_storage = [tape.get_values()]
+    # Initializing the tape with begin values
+    tape = Tape(10, 0, ['1', '1', '1'], instructions)
 
     # Running program
-    while tape.current_state != 'zE':
-        run = 0
-        for instruction in instructions:
-            if instruction.condition_state == tape.current_state:
-                if instruction.condition_read == tape.read_current_value():
-                    print('Executing instruction: ', instruction)
-                    tape.execute_instruction(instruction)
-                    execution_storage.append(tape.get_values())
-                    break
-            run += 1
-            if run == len(instructions):
-                print('No applicable instruction in program found. Avoiding endless loop. Exiting.')
-                tape.current_state = 'zE'
+    tape.calc()
 
     print('Program completed. Result:')
     print(tape)
 
-    print(execution_storage)
+    print(tape.get_execution_storage())
 
     app = QApplication(sys.argv)
     window = Window(instructions)
