@@ -60,7 +60,6 @@ class Window(QWidget):
             j = 0
             for value in value_set:
                 self.table.setItem(i, j, QTableWidgetItem(value))
-                print(i, j, value)
                 j += 1
             i += 1
 
