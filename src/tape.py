@@ -8,6 +8,7 @@ class Tape:
         self.instructions = instructions
         self.execution_storage = [self.get_values()]
         self.head_storage = [self.head_position]
+        self.state_storage = []
 
         self.current_state = 'z0'
 
@@ -60,6 +61,7 @@ class Tape:
 
         self.execution_storage.append(self.get_values())
         self.head_storage.append(self.head_position)
+        self.state_storage.append(instruction.condition_state + '->' + instruction.result_state)
 
     def calc(self):
         while self.current_state != 'zE':
@@ -77,9 +79,3 @@ class Tape:
 
         print('Program completed. Result:')
         print(self.__str__())
-
-    def get_execution_storage(self):
-        return self.execution_storage
-
-    def get_head_storage(self):
-        return self.head_storage

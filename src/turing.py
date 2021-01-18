@@ -42,7 +42,7 @@ def main():
 
     # GUI
     app = QApplication(sys.argv)
-    window = Window(instructions, tape.get_execution_storage(), tape.get_head_storage())
+    window = Window(instructions, tape.execution_storage, tape.head_storage, tape.state_storage)
 
     sys.exit(app.exec_())
 
