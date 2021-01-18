@@ -27,6 +27,7 @@ class Window(QWidget):
         self.list_label.setAlignment(Qt.AlignLeft)
 
         self.table = QTableWidget()
+        self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table.setRowCount(self.row_count)
         self.table.setColumnCount(self.column_count_max)
         self.table.resizeColumnsToContents()
