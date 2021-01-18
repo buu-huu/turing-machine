@@ -1,5 +1,9 @@
 from tape import *
 from instruction import *
+from PyQt5.QtWidgets import QApplication
+from window import *
+
+import sys
 
 
 def read_program(path):
@@ -53,6 +57,10 @@ def main():
 
     print('Program completed. Result:')
     print(tape)
+
+    app = QApplication(sys.argv)
+    window = Window(instructions)
+    sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
