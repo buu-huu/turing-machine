@@ -9,6 +9,8 @@ class Window(QWidget):
 
         self.program_length = len(program)
         self.column_count_max = len(max(execution_storage, key=len))
+        self.row_count = len(execution_storage)
+        self.values = execution_storage
 
         self.initUI()
         self.load_program_to_list(program)
@@ -25,11 +27,14 @@ class Window(QWidget):
         self.list_label.setAlignment(Qt.AlignLeft)
 
         self.table = QTableWidget()
-        self.table.setRowCount(1)
+        self.table.setRowCount(self.row_count)
         self.table.setColumnCount(self.column_count_max)
         self.table.resizeColumnsToContents()
-        self.table.setItem(0, 0, QTableWidgetItem('1'))
-        self.table.setItem(0, 1, QTableWidgetItem('2'))
+        self.add_table_row(self.values)
+
+        self.table_label = QLabel()
+        self.table_label.setText('Execution')
+        self.table_label.setAlignment(Qt.AlignLeft)
 
         # Layout
         self.master_layout = QHBoxLayout(self)
@@ -39,11 +44,25 @@ class Window(QWidget):
         self.prog_box.addWidget(self.list_label)
         self.prog_box.addWidget(self.program_list)
 
+        self.table_box = QVBoxLayout(self)
+        self.table_box.addWidget(self.table_label)
+        self.table_box.addWidget(self.table)
+
         self.master_layout.addLayout(self.prog_box)
-        self.master_layout.addWidget(self.table)
+        self.master_layout.addLayout(self.table_box)
         self.setLayout(self.master_layout)
 
         self.show()
+
+    def add_table_row(self, values):
+        i = 0
+        for value_set in values:
+            j = 0
+            for value in value_set:
+                self.table.setItem(i, j, QTableWidgetItem(value))
+                print(i, j, value)
+                j += 1
+            i += 1
 
     def load_program_to_list(self, program):
         for instruction in program:
