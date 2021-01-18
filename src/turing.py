@@ -35,14 +35,28 @@ def read_program(path):
     return instruction_list
 
 
+def read_initial_state(path):
+    with open(path) as f:
+        state = f.readlines()
+        state_arr = state[0].replace(' ', '').split(',')
+
+        result = []
+        for element in state_arr:
+            result.append(str(element))
+
+        return result
+
+
 def main():
-    instructions = read_program('turing_programs/double_ones.txt')
-    tape = Tape(10, 0, ['1', '1', '1'], instructions)
+    program = read_program('turing_programs/double_ones.txt')
+    initial_state = read_initial_state('initial_state.txt')
+
+    tape = Tape(10, 0, initial_state, program)
     tape.calc()
 
     # GUI
     app = QApplication(sys.argv)
-    window = Window(instructions, tape.execution_storage, tape.head_storage, tape.state_storage)
+    window = Window(program, tape.execution_storage, tape.head_storage, tape.state_storage)
 
     sys.exit(app.exec_())
 

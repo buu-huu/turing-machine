@@ -20,7 +20,7 @@ class Window(QWidget):
         self.load_program_to_list(program)
 
     def initUI(self):
-        self.setGeometry(300, 300, 850, 400)
+        self.setGeometry(300, 300, 950, 450)
         self.setWindowTitle('Turing Machine')
 
         self.program_list = QListWidget()
@@ -45,8 +45,8 @@ class Window(QWidget):
         self.table_state = QTableWidget()
         self.table_state.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table_state.verticalScrollBar().hide()
-        self.table_state.verticalHeader().hide()
-        self.table_state.setFixedWidth(100)
+        #self.table_state.verticalHeader().hide()
+        self.table_state.setFixedWidth(120)
         self.table_state.setRowCount(self.row_count)
         self.table_state.setColumnCount(1)
         self.add_table_state_rows()
@@ -105,7 +105,6 @@ class Window(QWidget):
     def add_table_state_rows(self):
         for i in range(len(self.state_storage)):
             self.table_state.setItem(i, 0, QTableWidgetItem(self.state_storage[i]))
-
 
     def init_table_execution_blank(self):
         for i in range(self.row_count):
