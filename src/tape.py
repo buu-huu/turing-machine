@@ -72,5 +72,8 @@ class Tape:
                     print('No applicable instruction in program found. Avoiding endless loop. Exiting.')
                     self.current_state = 'zE'
 
+        print('Program completed. Result:')
+        print(self.__str__())
+
     def get_execution_storage(self):
         return self.execution_storage

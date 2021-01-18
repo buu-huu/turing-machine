@@ -36,22 +36,14 @@ def read_program(path):
 
 
 def main():
-    # Reading program from file
     instructions = read_program('turing_programs/double_ones.txt')
-
-    # Initializing the tape with begin values
     tape = Tape(10, 0, ['1', '1', '1'], instructions)
-
-    # Running program
     tape.calc()
 
-    print('Program completed. Result:')
-    print(tape)
-
-    print(tape.get_execution_storage())
-
+    # GUI
     app = QApplication(sys.argv)
-    window = Window(instructions)
+    window = Window(instructions, tape.get_execution_storage())
+
     sys.exit(app.exec_())
 
 

@@ -4,9 +4,12 @@ from PyQt5.QtGui import *
 
 
 class Window(QWidget):
-    def __init__(self, program):
+    def __init__(self, program, execution_storage):
         super().__init__()
+
         self.program_length = len(program)
+        self.column_count_max = len(max(execution_storage, key=len))
+
         self.initUI()
         self.load_program_to_list(program)
 
@@ -23,7 +26,7 @@ class Window(QWidget):
 
         self.table = QTableWidget()
         self.table.setRowCount(1)
-        self.table.setColumnCount(self.program_length)
+        self.table.setColumnCount(self.column_count_max)
         self.table.resizeColumnsToContents()
         self.table.setItem(0, 0, QTableWidgetItem('1'))
         self.table.setItem(0, 1, QTableWidgetItem('2'))
