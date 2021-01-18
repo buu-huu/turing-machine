@@ -7,6 +7,7 @@ class Tape:
         self.head_position = head_position
         self.instructions = instructions
         self.execution_storage = [self.get_values()]
+        self.head_storage = [self.head_position]
 
         self.current_state = 'z0'
 
@@ -57,6 +58,9 @@ class Tape:
         self.move_head(instruction.result_move)
         self.current_state = instruction.result_state
 
+        self.execution_storage.append(self.get_values())
+        self.head_storage.append(self.head_position)
+
     def calc(self):
         while self.current_state != 'zE':
             run = 0
@@ -65,7 +69,6 @@ class Tape:
                     if instruction.condition_read == self.read_current_value():
                         print('Executing instruction: ', instruction)
                         self.execute_instruction(instruction)
-                        self.execution_storage.append(self.get_values())
                         break
                 run += 1
                 if run == len(self.instructions):
@@ -77,3 +80,6 @@ class Tape:
 
     def get_execution_storage(self):
         return self.execution_storage
+
+    def get_head_storage(self):
+        return self.head_storage

@@ -4,13 +4,14 @@ from PyQt5.QtGui import *
 
 
 class Window(QWidget):
-    def __init__(self, program, execution_storage):
+    def __init__(self, program, execution_storage, head_storage):
         super().__init__()
 
         self.program_length = len(program)
-        self.column_count_max = len(max(execution_storage, key=len))
+        self.column_count = len(max(execution_storage, key=len))
         self.row_count = len(execution_storage)
         self.values = execution_storage
+        self.head_positions = head_storage
 
         self.initUI()
         self.load_program_to_list(program)
@@ -29,12 +30,13 @@ class Window(QWidget):
         self.table = QTableWidget()
         self.table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.table.setRowCount(self.row_count)
-        self.table.setColumnCount(self.column_count_max)
+        self.table.setColumnCount(self.column_count)
         self.table.resizeColumnsToContents()
+        self.init_table_blank()
         self.add_table_row(self.values)
 
         self.table_label = QLabel()
-        self.table_label.setText('Execution')
+        self.table_label.setText('Execution (highlighted cell = head position)')
         self.table_label.setAlignment(Qt.AlignLeft)
 
         # Layout
@@ -63,6 +65,14 @@ class Window(QWidget):
                 self.table.setItem(i, j, QTableWidgetItem(value))
                 j += 1
             i += 1
+
+        for k in range(len(self.head_positions)):
+            self.table.item(k, self.head_positions[k]).setBackground(QColor(220, 140, 230))
+
+    def init_table_blank(self):
+        for i in range(self.row_count):
+            for j in range(self.column_count):
+                self.table.setItem(i, j, QTableWidgetItem())
 
     def load_program_to_list(self, program):
         for instruction in program:
