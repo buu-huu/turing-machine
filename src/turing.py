@@ -1,10 +1,11 @@
+import os
+import sys
+
 from PyQt5.QtWidgets import QApplication
 
-from window import *
-from tape import *
 from instruction import *
-
-import sys, os
+from tape import *
+from window import *
 
 
 def read_program(path):
@@ -37,13 +38,20 @@ def read_program(path):
 
 def read_initial_state(path):
     with open(path) as f:
-        state = f.readlines()
-        state_arr = state[0].replace(' ', '').split(',')
+        lines = (line.rstrip() for line in f)
+
+        state_string = ''
+        for line in lines:
+            if not line.startswith('#'):
+                state_string += line
+                break
+
+        state_arr = state_string.replace(' ', '').split(',')
 
         result = []
         for element in state_arr:
             result.append(str(element))
-
+        print(result)
         return result
 
 
@@ -55,7 +63,7 @@ def print_help():
 
 
 def main():
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         print_help()
         sys.exit(0)
 

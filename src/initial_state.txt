@@ -1,1 +1,2 @@
-1, 1, 1
+# Here you can configure the initial state of the tape, separated by commas
+1, 1, 1, 1, 1
