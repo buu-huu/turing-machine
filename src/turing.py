@@ -4,7 +4,7 @@ from window import *
 from tape import *
 from instruction import *
 
-import sys
+import sys, os
 
 
 def read_program(path):
@@ -47,14 +47,30 @@ def read_initial_state(path):
         return result
 
 
+def print_help():
+    print('Turing machine\n')
+    print('First, declare your initial state in the file initial_state.txt.')
+    print('Usage: python turing.py <PROGRAM FILE PATH>')
+    print('Example: python turing.py turing_programs/double_ones.txt')
+
+
 def main():
-    program = read_program('turing_programs/double_ones.txt')
+    if len(sys.argv) < 1:
+        print_help()
+        sys.exit(0)
+
+    programfile_path = sys.argv[1]
+
+    if not os.path.isfile(programfile_path):
+        print('The program file you specified does not exist!')
+        sys.exit(0)
+
+    program = read_program(programfile_path)
     initial_state = read_initial_state('initial_state.txt')
 
     tape = Tape(10, 0, initial_state, program)
     tape.calc()
 
-    # GUI
     app = QApplication(sys.argv)
     window = Window(program, tape.execution_storage, tape.head_storage, tape.state_storage)
 
