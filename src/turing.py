@@ -16,7 +16,8 @@ def read_program(path):
     # Cleaning up spaces in program file
     instructions_cleaned = []
     for line in instructions:
-        instructions_cleaned.append(line.replace(' ', ''))
+        if not line.startswith('#'):
+            instructions_cleaned.append(line.replace(' ', ''))
 
     instructions_cleaned = list(filter(None, instructions_cleaned))
 
@@ -51,7 +52,7 @@ def read_initial_state(path):
         result = []
         for element in state_arr:
             result.append(str(element))
-        print(result)
+
         return result
 
 

@@ -1,3 +1,6 @@
+# Program is constructed like the following scheme
+# <STATE TO BE CHECKED>, <LETTER TO BE CHECKED> > <NEW STATE>, <LETTER TO BE WRITTEN>, <MOVEMENT (LEFT/RIGHT)>
+
 z0, 1 > z1, a, R
 z1, 1 > z1, 1, R
 z1, b > z1, b, R
