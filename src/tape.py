@@ -24,13 +24,13 @@ class Tape:
         self.values = values
 
     def read_current_value(self):
-        if self.head_position >= len(self.values)-1:
+        if self.head_position >= len(self.values):
             self.values.append(self.EMPTY_STRING)
 
         return self.values[self.head_position]
 
     def write_current_value(self, value):
-        if self.head_position >= len(self.values)-1:
+        if self.head_position >= len(self.values):
             self.values.append(self.EMPTY_STRING)
 
         self.values[self.head_position] = value
