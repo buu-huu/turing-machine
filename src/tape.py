@@ -24,19 +24,16 @@ class Tape:
         self.values = values
 
     def read_current_value(self):
-        try:
-            value = self.values[self.head_position]
-        except IndexError:
+        if self.head_position >= len(self.values)-1:
             self.values.append(self.EMPTY_STRING)
-            value = self.values[self.head_position]
-        return value
+
+        return self.values[self.head_position]
 
     def write_current_value(self, value):
-        try:
-            self.values[self.head_position] = value
-        except IndexError:
+        if self.head_position >= len(self.values)-1:
             self.values.append(self.EMPTY_STRING)
-            self.values[self.head_position] = value
+
+        self.values[self.head_position] = value
 
     def move_head(self, instr_char):
         if instr_char == 'R':
