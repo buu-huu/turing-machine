@@ -11,7 +11,7 @@ You can use an alphabet of all letters or numbers. Internally, they are handled 
 
 ### Configuration
 The initial state of the tape can be configured in the file `initial_state.txt`. The turing program has to be in a textfile.
-You can pass the textfile as an argument when calling `turing.py`.
+You can pass the text file as an argument when calling `turing.py`.
 
 
 ### Installation
@@ -28,5 +28,5 @@ cd src
 python turing.py
 ```
 
-Info: You need to use Python 3. Maybe you have to use the command `python3` instead of `python`.
+Info: You need to use Python 3. Depending on your Python installation, you have to use the command `python3` instead of `python`.
 
