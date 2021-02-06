@@ -1,0 +1,15 @@
+####################
+# TWO'S COMPLEMENT #
+####################
+#
+# Program is constructed like the following scheme
+# <STATE TO BE CHECKED>, <LETTER TO BE CHECKED> > <NEW STATE>, <LETTER TO BE WRITTEN>, <MOVEMENT (LEFT/RIGHT)>
+#
+# Explanation: Program creates the two's complement of a binary number
+# Example: Initial State: 0, 1, 0, 1	Result: 1, 0, 1, 1
+
+z0, 1 > z0, 0, R
+z0, 0 > z0, 1, R
+z0, EMP > z1, EMP, L
+z1, 0 > zE, 1, H
+z1, 1 > z1, 0, L
