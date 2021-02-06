@@ -1,5 +1,12 @@
+###############
+# DOUBLE ONES #
+###############
+#
 # Program is constructed like the following scheme
 # <STATE TO BE CHECKED>, <LETTER TO BE CHECKED> > <NEW STATE>, <LETTER TO BE WRITTEN>, <MOVEMENT (LEFT/RIGHT)>
+#
+# Explanation: Program doubles a set of ones on the tape.
+# Example: Initial State: 1, 1, 1	Result: 1, 1, 1, 1, 1, 1
 
 z0, 1 > z1, a, R
 z1, 1 > z1, 1, R
