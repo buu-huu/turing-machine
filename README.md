@@ -6,28 +6,21 @@ This program is able to run programs in a turing machine and to visualize all st
 
 ![Turing GUI](images/turing.jpg)
 
-The program can be started from the commandline. Just pass the turing program as an argument to the program call. Example:
+Call the program via the command line and pass the turing program as an argument:
 
 `python turing.py turing_programs/double_ones.txt`
 
 ## Installation
-The program does not need to be installed. You just need to install PyQt5 by executing the following command.
+Installation is not required. Just make sure, you habe PyQt5 installed or do it by executing the following command.
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-And then, run the program:
-
-```bash
-cd src
-python turing.py
-```
-
-Info: You need to use Python 3. Depending on your Python installation, you have to use the command `python3` instead of `python`.
+The program is written in Python 3.
 
 ## Alphabet
-You can use an alphabet of all letters or numbers. Internally, they are handled as strings.
+You can use a turing alphabet of all letters or numbers. Internally, they are obviously handled as strings.
 
 ## Configuration
 ### Initial State
