@@ -2,7 +2,7 @@
 Python implementation of the turing machine.
 
 ## Info
-This program is able to run programs in a turing machine and to visualize all steps to the result.
+This program is able to run programs in a turing machine and to visualize all steps to the result. I coded this small project quick and dirty during my degree in cyber security to make life easier for me - don't expect a beauty.
 
 ![Turing GUI](images/turing.jpg)
 
